@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><title>Document</title><meta name=viewport content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name=format-detection content="telphone=no,email=no,address=no"><meta http-equiv=X-UA-compatible content="IE=edge,chrome=1"><link rel=stylesheet type=text/css href=css/style.css><link rel=stylesheet type=text/css href=font/iconfont.css></head><script>
+    document.documentElement.style.fontSize=window.innerWidth/10+'px'
+</script><body><div class=wrap><header class=header></header><section class=section><div class=box><ul></ul></div></section><footer class=footer><dl><dt><i class=iconfont>&#xe647;</i></dt><dd><span>首页</span></dd></dl><dl><dt><i class=iconfont>&#xe647;</i></dt><dd><span>首页</span></dd></dl><dl><dt><i class=iconfont>&#xe647;</i></dt><dd><span>首页</span></dd></dl><dl><dt><i class=iconfont>&#xe647;</i></dt><dd><span>首页</span></dd></dl></footer></div></body><script src=js/iscroll.js></script><script src=js/yuan.js></script><script src=js/zepto.js></script><script>
+
+$.ajax({
+    url:'data/jinrong.json',
+    success:function(data){
+        console.log(data);
+        var str='';
+        data.result.forEach(function(v,i){
+            str+=`
+                <li>
+                <h1>${v.name}</h1>
+                <div>
+                    <dl>
+                        <dt>预期年化</dt>
+                        <dd>${v.nhl}%</dd>
+                    </dl>
+                    <dl class="reduce">
+                        <dt>年化奖励</dt>
+                        <dd>${v.nhjl}%</dd>
+                    </dl>
+                    <dl>
+                        <dt>理财期限</dt>
+                        <dd>${v.qixian}天</dd>
+                    </dl>
+                    <dl>
+                        <dt>其投资近</dt>
+                        <dd>${v.qtzj}</dd>
+                    </dl>
+                    <p class="canvas">
+                        <canvas data-num="${v.num}" width="50" height="50"></canvas>
+                    </p>
+                </div>
+            </li>
+            `;
+        })
+        $('ul').append(str).find('canvas').each(function(){
+            var yuan=new Can(this);
+        })
+            new IScroll(".section",{
+
+        })
+    }
+})
+
+</script></html>
